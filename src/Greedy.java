@@ -30,7 +30,7 @@ public class Greedy {
                 suma += nroPieza;
                 solucion.add(mayorProduccion);
             }
-            
+
             if (suma + nroPieza > piezas){
                 maquinas.remove(mayorProduccion);
             }
