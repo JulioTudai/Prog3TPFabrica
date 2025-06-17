@@ -13,6 +13,7 @@ public class Main {
             fabrica.setMaquinas(m2);
             fabrica.setMaquinas(m3);
             fabrica.setMaquinas(m4);
+            /*
 
             BackTraking back = new BackTraking();
             Resultados r = back.backTranking(fabrica);
@@ -31,5 +32,27 @@ public class Main {
             System.out.println("Piezas producidas: " + r.getPiezasProducidas());
             System.out.println("Marchas: " + r.getMarchas());
             System.out.println("Estados generados: " + r.getEstados());
+
+             */
+
+        Greedy algoritmo = new Greedy();
+        Resultados resultados = algoritmo.greedy(fabrica);
+        System.out.println("Mejor secuencia:");
+
+        if (!resultados.getSecuencias().isEmpty()) {
+            List<Maquina> mejorSecuencia = resultados.getSecuencias().get(0);
+            for (Maquina m : mejorSecuencia) {
+                System.out.println(m.getNombre() + " (" + m.getNroPiezas() + " piezas)");
+            }
+        } else {
+            System.out.println("No se encontró ninguna secuencia válida.");
         }
+
+        System.out.println("Piezas producidas: " + resultados.getPiezasProducidas());
+        System.out.println("Marchas: " + resultados.getMarchas());
+        System.out.println("Estados generados: " + resultados.getEstados());
+
+
+
+    }
     }

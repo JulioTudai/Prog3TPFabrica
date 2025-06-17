@@ -1,4 +1,7 @@
-public class Maquina {
+import java.lang.Comparable;
+
+public class Maquina implements Comparable<Maquina> {
+
 
     private String nombre;
     private int nroPiezas;
@@ -24,5 +27,10 @@ public class Maquina {
 
     public void setNroPiezas(int nroPiezas) {
         this.nroPiezas = nroPiezas;
+    }
+
+    @Override
+    public int compareTo(Maquina o) {
+        return Integer.compare(this.nroPiezas, o.nroPiezas);
     }
 }
