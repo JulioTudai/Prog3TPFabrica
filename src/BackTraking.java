@@ -28,18 +28,15 @@ public class BackTraking {
 
                 if (!poda(maquinasActuales, m.getNroPiezas(), piezas) ) {
 
-                    if (!resultados.getSecuencias().isEmpty() &&
-                            maquinasActuales.size() + 1 < resultados.getSecuencias().get(0).size()) {
-                        maquinasActuales.add(m);
-                        obtenerResultados(maquinas, piezas, maquinasActuales, resultados);
-                        maquinasActuales.remove(maquinasActuales.size() - 1);
-                    }
-                    else if(resultados.getSecuencias().isEmpty()){
-                        maquinasActuales.add(m);
-                        obtenerResultados(maquinas, piezas, maquinasActuales, resultados);
-                        maquinasActuales.remove(maquinasActuales.size() - 1);
+                    boolean noHaySoluciones = resultados.getSecuencias().isEmpty();
+                    boolean esMasCortaQueLaMejor = !noHaySoluciones && maquinasActuales.size() + 1 < resultados.getSecuencias().get(0).size();
 
+                    if (noHaySoluciones || esMasCortaQueLaMejor) {
+                        maquinasActuales.add(m);
+                        obtenerResultados(maquinas, piezas, maquinasActuales, resultados);
+                        maquinasActuales.remove(maquinasActuales.size() - 1);
                     }
+
                 }
             }
         }
