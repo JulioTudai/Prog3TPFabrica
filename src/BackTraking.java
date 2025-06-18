@@ -3,6 +3,23 @@ import java.util.List;
 
 public class BackTraking {
 
+    /*
+     * Algoritmo Backtracking:
+     * arbol de exploracion: cada nodo representa un estado parcial una secuencia actual de maquinas ya utilizadas.
+     * el estado inicial es una secuencia vacia.
+     * en cada paso (cada nivel del arbol) se elige una maquina para agregar a la secuencia y se avanza recursivamente.
+     * los estados solucion son aquellos en los que la suma total de piezas producidas por la secuencia actual
+     * es igual a la cantidad de piezas necesarias.
+     * las hojas del árbol representan todas las combinaciones posibles de uso de máquinas pero muchas son podadas.
+     *
+     * se usan podas para reducir iteraciones:
+     * si al sumar la cantidad de piezas de la secuencia actual mas la cantidad de piezas de la proxima máquina
+     * se supera el total requerido, se descarta esa rama evitando combinaciones innecesarias.
+     * si ya existe una solución mejor (con menor cantidad de puestas en marcha), y la cantidad de máquinas
+     * de la secuencia actual ya es mayor o igual a la mejor solución encontrada, también se poda.
+     * el costo utilizado es la cantidad de estados generados (cantidad de veces que se entra a la funcion obtenerResultados()).
+     */
+
     public Resultados backTranking(Fabrica fabrica){
 
         Resultados resultados = new Resultados(0, 0, 0);
@@ -36,7 +53,6 @@ public class BackTraking {
                         obtenerResultados(maquinas, piezas, maquinasActuales, resultados);
                         maquinasActuales.remove(maquinasActuales.size() - 1);
                     }
-
                 }
             }
         }
