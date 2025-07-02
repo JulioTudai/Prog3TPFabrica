@@ -22,12 +22,11 @@ public class Greedy {
      */
 
 
-    public Resultados greedy(Fabrica fabrica) {
-        Resultados resultados = new Resultados(0, 0, 0);
+    public Resultados  greedy(Fabrica fabrica) {
         ArrayList<Maquina> solucion = new ArrayList<>();
+        Resultados resultados = new Resultados(0, 0, 0);
 
-        obtenerResultados(fabrica.getMaquinas(), fabrica.getPiezas(), solucion, resultados);
-        resultados.addSecuencia(solucion);
+        obtenerResultados(fabrica.getMaquinas(), fabrica.getPiezas(), solucion,resultados);
         return resultados;
 
     }
@@ -35,26 +34,29 @@ public class Greedy {
     private void obtenerResultados(ArrayList<Maquina> maquinas, int piezas, ArrayList<Maquina> solucion, Resultados resultados) {
         Collections.sort(maquinas);
         int suma = 0;
-        int marchas = 0;
+        int candidatos = 0;
         int nroPieza;
         while (!maquinas.isEmpty() && !esSolucion(solucion, piezas)) {
-            resultados.setEstados(resultados.getEstados() + 1);
+
             Maquina mayorProduccion = maquinas.get(maquinas.size()-1);
+            candidatos++;
             nroPieza =  mayorProduccion.getNroPiezas();
 
             if ( suma + nroPieza <= piezas ){
-                marchas ++;
-                resultados.setMarchas(marchas);
                 suma += nroPieza;
                 solucion.add(mayorProduccion);
             }
 
             if (suma + nroPieza > piezas){
-                maquinas.remove(mayorProduccion);
+                maquinas.remove(maquinas.size()-1);
             }
 
         }
+        resultados.addSecuencia(solucion);
+        resultados.setMarchas(solucion.size());
+        resultados.setEstados(candidatos );
         resultados.setPiezasProducidas(suma);
+
 
     }
 

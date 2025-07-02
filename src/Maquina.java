@@ -33,4 +33,12 @@ public class Maquina implements Comparable<Maquina> {
     public int compareTo(Maquina o) {
         return Integer.compare(this.nroPiezas, o.nroPiezas);
     }
+
+    @Override
+    public String toString() {
+        return "Maquina{" +
+                 nombre + '\'' +
+                ", nroPiezas=" + nroPiezas +
+                '}';
+    }
 }

@@ -3,7 +3,7 @@ import java.util.List;
 
 public class Resultados {
 
-    private List<List<Maquina>> secuencias;
+    private List<Maquina> secuencias;
     private int piezasProducidas;
     private int marchas;
     private int estados;
@@ -15,18 +15,16 @@ public class Resultados {
         this.estados = estados;
     }
     public void addSecuencia(List<Maquina> secuencia) {
-        this.secuencias.add(new ArrayList<>(secuencia)); // defensiva
+        this.secuencias=new ArrayList<>(secuencia); // defensiva
     }
 
-    public List<List<Maquina>> getSecuencias() {
-        List<List<Maquina>> copia = new ArrayList<>();
-        for (List<Maquina> secuencia : this.secuencias) {
-            copia.add(new ArrayList<>(secuencia));
-        }
+    public List<Maquina> getSecuencias() {
+        List<Maquina> copia = new ArrayList<>(this.secuencias);
+
         return copia;
     }
 
-    public void setSecuencias(List<List<Maquina>> secuencias) {
+    public void setSecuencias(List<Maquina> secuencias) {
         this.secuencias = secuencias;
     }
 
